@@ -1,0 +1,200 @@
+---
+// src/pages/index.astro
+import Layout from '../layouts/Layout.astro';
+
+const experience = [
+  {
+    title: 'Back End Developer',
+    company: 'Dealroom.co',
+    type: 'Contract',
+    period: 'Jan 2023 – Present',
+    location: 'Amsterdam, Netherlands · Hybrid',
+    description:
+      'Currently engaged in a significant project to split the PHP monolith into Golang microservices. Actively contribute to infrastructure components and ensure efficiency and functionality through Infrastructure as Code (IaC).',
+    tech: ['Golang', 'Terraform', 'GCP', 'GKE', 'Kubernetes'],
+  },
+  {
+    title: 'Back End Developer',
+    company: 'Target Energy Solutions',
+    type: 'Full-time',
+    period: 'Nov 2018 – Dec 2022',
+    location: 'Tunis, Tunisia',
+    description:
+      "Contributed to multiple projects, notably the 'Iskan' project for the Oman Ministry of Housing, integrating functionalities and developing APIs in Golang. Also worked on 'Oxy Expense Sheet', 'Timesheet', 'Permits', and 'Contact ref-book'.",
+    bullets: [
+      'Contribute to software architecture design and develop distributed APIs (REST, gRPC, GraphQL).',
+      'Write automated unit tests.',
+      'Monitor and troubleshoot operational or application issues in production.',
+      'Develop proof-of-concept work as part of the technical design process.',
+      'Interact with teams of engineers from multiple disciplines.',
+    ],
+    tech: ['Golang', 'Java', 'Spring Boot', 'PostgreSQL', 'MongoDB', 'Docker', 'gRPC', 'Gin'],
+  },
+  {
+    title: 'Back End Developer',
+    company: 'Alliance Technologies',
+    type: 'Full-time',
+    period: 'Dec 2017 – Nov 2018',
+    location: 'El Manar I, Tunis, Tunisia',
+    description:
+      'Contributed to software architecture design and development of software applications.',
+    bullets: [
+      'Monitor and troubleshoot application issues in production.',
+      'Develop proof-of-concept work as part of the technical design process.',
+    ],
+    tech: ['Java', 'Spring Boot', 'Angular 5', 'PostgreSQL'],
+  },
+  {
+    title: 'Research Internship',
+    company: 'LARODEC Laboratory',
+    type: 'Internship',
+    period: 'Jan 2017 – Nov 2017',
+    location: 'Le Bardo, Tunisia',
+    description:
+      'Explored Machine Learning and Genetic Algorithms. Implemented an experiment to test a new approach in automated negotiations for multi-agent systems.',
+    bullets: [
+      'Created a software agent that negotiates with multiple agents simultaneously using Java multi-threading and the DEIWO algorithm.',
+      'Published research in the International Journal of Interactive Multimedia and Artificial Intelligence.',
+    ],
+    tech: ['Java', 'Machine Learning', 'Genetic Algorithms'],
+  },
+  {
+    title: 'Internship',
+    company: 'Alliance Technologies',
+    type: 'Internship',
+    period: 'Jan 2015 – Jun 2015',
+    location: 'Tunis, Tunisia',
+    description:
+      'Design and implementation of a web application for Sodexo Tunisia Pass Restaurant Card using ASP.NET MVC5.',
+    tech: ['ASP.NET MVC5'],
+  },
+];
+
+const education = [
+  {
+    school: 'Institut Supérieur de Gestion de Tunis',
+    degree: 'Master of Science (M.S), Science and Technology for Business Intelligence',
+    period: '2015 – 2017',
+    detail:
+      'Mastère de recherche — Sciences et Techniques de l’Informatique Décisionnelle (STID), option Informatique et Gestion de la Connaissance (IGC).',
+  },
+  {
+    school: 'Institut Supérieur de Gestion de Tunis',
+    degree: "Bachelor's degree, Management Computer Science",
+    period: '2012 – 2015',
+    detail: 'Licence fondamentale en Informatique de Gestion.',
+  },
+];
+
+const skills = [
+  'Golang', 'Java', 'Spring Boot', 'Terraform', 'GCP', 'GKE', 'Kubernetes',
+  'PostgreSQL', 'MongoDB', 'Docker', 'gRPC', 'GraphQL', 'REST', 'Gin',
+  'Angular', 'ASP.NET MVC5', 'Machine Learning', 'GitOps', 'CI/CD',
+];
+
+const publications = [
+  {
+    title: "An Evolutionary Approach for Learning Opponent's Deadline and Reserve Points in Multi-Issue Negotiation",
+    venue: 'International Journal of Interactive Multimedia and Artificial Intelligence (IJIMAI)',
+    date: 'Aug 2018',
+    summary:
+      'Proposes an Evolutionary Learning Agent (ELA) able to estimate an opponent’s deadline and reserve points in bilateral multi-issue negotiation based on counter-offers alone.',
+  },
+];
+
+const languages = [
+  { name: 'Arabic', level: 'Native or bilingual proficiency' },
+  { name: 'English', level: 'Full professional proficiency' },
+];
+---
+
+<Layout>
+  <main class="max-w-3xl mx-auto px-6 py-12 bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+    <!-- Header -->
+    <header class="mb-12">
+      <h1 class="text-4xl font-bold mb-2">Hamdi Bouhani</h1>
+      <p class="text-xl text-gray-600 dark:text-gray-400">Back End Developer · Golang · Cloud & IaC</p>
+      <p class="mt-3 text-sm text-gray-500 dark:text-gray-400">
+        Amsterdam, Netherlands ·
+        <a href="https://www.linkedin.com/in/hamdi-bouhani-26752a140" class="underline hover:text-gray-900 dark:hover:text-gray-100">LinkedIn</a>
+      </p>
+    </header>
+
+    <!-- Experience -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-semibold border-b pb-2 mb-6 border-gray-200 dark:border-gray-700">Experience</h2>
+      {experience.map((job) => (
+        <div class="mb-8">
+          <h3 class="text-lg font-medium">{job.title}</h3>
+          <p class="text-gray-500 dark:text-gray-400 text-sm">
+            {job.company} · {job.type} | {job.period}
+          </p>
+          <p class="text-gray-500 dark:text-gray-400 text-sm mb-2">{job.location}</p>
+          <p class="mt-2 text-gray-700 dark:text-gray-300">{job.description}</p>
+          {job.bullets && (
+            <ul class="mt-2 list-disc list-inside text-gray-700 dark:text-gray-300 space-y-1">
+              {job.bullets.map((b) => <li>{b}</li>)}
+            </ul>
+          )}
+          {job.tech && (
+            <div class="mt-3 flex flex-wrap gap-2">
+              {job.tech.map((t) => (
+                <span class="text-xs px-2 py-1 rounded bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300">{t}</span>
+              ))}
+            </div>
+          )}
+        </div>
+      ))}
+    </section>
+
+    <!-- Education -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-semibold border-b pb-2 mb-6 border-gray-200 dark:border-gray-700">Education</h2>
+      {education.map((ed) => (
+        <div class="mb-6">
+          <h3 class="text-lg font-medium">{ed.school}</h3>
+          <p class="text-gray-500 dark:text-gray-400 text-sm">{ed.degree} | {ed.period}</p>
+          <p class="mt-1 text-gray-700 dark:text-gray-300">{ed.detail}</p>
+        </div>
+      ))}
+    </section>
+
+    <!-- Skills -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-semibold border-b pb-2 mb-6 border-gray-200 dark:border-gray-700">Skills</h2>
+      <div class="flex flex-wrap gap-2">
+        {skills.map((s) => (
+          <span class="text-sm px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200">{s}</span>
+        ))}
+      </div>
+    </section>
+
+    <!-- Publications -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-semibold border-b pb-2 mb-6 border-gray-200 dark:border-gray-700">Publications</h2>
+      {publications.map((p) => (
+        <div class="mb-4">
+          <h3 class="text-lg font-medium">{p.title}</h3>
+          <p class="text-gray-500 dark:text-gray-400 text-sm">{p.venue} · {p.date}</p>
+          <p class="mt-2 text-gray-700 dark:text-gray-300">{p.summary}</p>
+        </div>
+      ))}
+    </section>
+
+    <!-- Languages -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-semibold border-b pb-2 mb-6 border-gray-200 dark:border-gray-700">Languages</h2>
+      <ul class="space-y-1">
+        {languages.map((l) => (
+          <li class="text-gray-700 dark:text-gray-300">
+            <span class="font-medium">{l.name}</span> — {l.level}
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <footer class="mt-16 text-center text-sm text-gray-500 dark:text-gray-400">
+      © {new Date().getFullYear()} Hamdi Bouhani
+    </footer>
+  </main>
+</Layout>
