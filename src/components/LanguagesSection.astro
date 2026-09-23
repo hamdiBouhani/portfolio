@@ -1,0 +1,14 @@
+---
+import Section from './Section.astro';
+import { languages } from '../data/languages';
+---
+<Section title="Languages">
+  <ul class="grid sm:grid-cols-2 gap-3">
+    {languages.map((l) => (
+      <li class="rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 px-5 py-4 flex items-center justify-between">
+        <span class="font-semibold text-slate-900 dark:text-slate-100">{l.name}</span>
+        <span class="text-sm text-slate-500 dark:text-slate-400">{l.level}</span>
+      </li>
+    ))}
+  </ul>
+</Section>

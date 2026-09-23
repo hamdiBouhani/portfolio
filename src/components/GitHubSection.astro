@@ -1,0 +1,45 @@
+---
+import Section from './Section.astro';
+import Card from './Card.astro';
+import { ghCard, profileViewsBadge } from '../lib/github';
+
+const cards = [
+  { src: ghCard('profile-details'), alt: 'GitHub profile details' },
+  { src: ghCard('stats'), alt: 'GitHub stats' },
+  { src: ghCard('most-commit-language', '&exclude=html'), alt: 'Most used languages by commit' },
+  { src: ghCard('repos-per-language', '&exclude=html'), alt: 'Repositories per language' },
+  {
+    src: ghCard('productive-time', '&utcOffset=1'),
+    alt: 'Productive time',
+    class: 'sm:col-span-2',
+  },
+];
+
+const cardImageClass =
+  'rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm w-full bg-white dark:bg-slate-900';
+---
+<Section title="GitHub & Open Source">
+  <div class="space-y-6">
+    <Card>
+      <h3 class="text-sm font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-4">
+        Tech Stack
+      </h3>
+      <img
+        src="https://skillicons.dev/icons?i=go,java,clojure,rust,spring,git,github,postgres,mongodb,docker,kubernetes,md,vscode"
+        alt="Hamdi Bouhani tech stack"
+        class="h-12 dark:opacity-90"
+        loading="lazy"
+      />
+    </Card>
+
+    <div class="grid gap-4 sm:grid-cols-2">
+      {cards.map((c) => (
+        <img src={c.src} alt={c.alt} class={`${cardImageClass} ${c.class ?? ''}`} loading="lazy" />
+      ))}
+    </div>
+
+    <div class="flex justify-center">
+      <img src={profileViewsBadge()} alt="Profile views" loading="lazy" />
+    </div>
+  </div>
+</Section>
