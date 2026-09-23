@@ -107,6 +107,40 @@ const languages = [
   { name: 'Arabic', level: 'Native or bilingual proficiency' },
   { name: 'English', level: 'Full professional proficiency' },
 ];
+
+const sideProjects = [
+    {
+    name: 'goakt-actor-examples',
+    description:'This example demonstrates how to build a simple actor-based bank account using GoAkt v4.',
+    url: 'https://github.com/hamdiBouhani/goakt-actor-examples',
+    tags: ['Golang', 'actor-based system'],
+  },
+  {
+    name: 'clojure-workspace',
+    description:
+      'Projects and scripts I implemented to learn and get familiar with Clojure — my first step into functional programming.',
+    url: 'https://github.com/hamdiBouhani/clojure-workspace',
+    tags: ['Clojure', 'Functional Programming'],
+  },
+  {
+    name: 'rust-playground-project',
+    description:
+      'A playground of projects and scripts I built while learning the Rust programming language.',
+    url: 'https://github.com/hamdiBouhani/rust-playground-project',
+    tags: ['Rust'],
+  },
+  {
+    name: 'mongodb-data-migrate',
+    description:
+      'A package to perform versioned migrations on MongoDB using the official Go driver. Depends only on the standard library and the MongoDB Go Driver. Inspired by mongo-migrate.',
+    url: 'https://github.com/hamdiBouhani/mongodb-data-migrate',
+    tags: ['Go', 'MongoDB', 'Migrations'],
+  },
+];
+
+const GITHUB_USERNAME = 'hamdiBouhani';
+const GH_CARD = (path: string, extra = '') =>
+  `https://github-profile-summary-cards.vercel.app/api/cards/${path}?username=${GITHUB_USERNAME}${extra}`;
 ---
 
 <Layout>
@@ -133,6 +167,14 @@ const languages = [
             Amsterdam, Netherlands ·
             <a href="https://www.linkedin.com/in/hamdi-bouhani-26752a140" class="font-medium text-sky-600 dark:text-sky-400 hover:underline">
               LinkedIn
+            </a>
+            ·
+            <a href="mailto:bouhanihamdi@gmail.com" class="font-medium text-sky-600 dark:text-sky-400 hover:underline">
+              Email
+            </a>
+            ·
+            <a href="https://docs.google.com/document/d/e/2PACX-1vQcTHDBUhmKC-k9wVHmR6iyS-5g16MExzJjeX8PNsM68TE-wpo5qGodYJnGZVrX82IUdJ7Q1fMxqwAU/pub" class="font-medium text-sky-600 dark:text-sky-400 hover:underline">
+              Resume
             </a>
           </p>
         </div>
@@ -211,6 +253,107 @@ const languages = [
             <span class="text-sm font-medium px-3.5 py-1.5 rounded-full bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-800 hover:border-sky-400 dark:hover:border-sky-600 hover:text-sky-700 dark:hover:text-sky-400 transition-colors cursor-default">
               {s}
             </span>
+          ))}
+        </div>
+      </section>
+
+      <!-- GitHub / Open Source -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold mb-6 flex items-center gap-3">
+          <span class="w-1 h-6 rounded-full bg-gradient-to-b from-sky-500 to-indigo-500"></span>
+          GitHub &amp; Open Source
+        </h2>
+
+        <div class="space-y-6">
+          <!-- Tech stack icons -->
+          <article class="rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 shadow-sm">
+            <h3 class="text-sm font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-4">
+              Tech Stack
+            </h3>
+            <img
+              src="https://skillicons.dev/icons?i=go,java,clojure,rust,spring,git,github,postgres,mongodb,docker,kubernetes,md,vscode"
+              alt="Hamdi Bouhani tech stack"
+              class="h-12 dark:opacity-90"
+              loading="lazy"
+            />
+          </article>
+
+          <!-- GitHub stats cards -->
+          <div class="grid gap-4 sm:grid-cols-2">
+            <img
+              src={GH_CARD('profile-details')}
+              alt="GitHub profile details"
+              class="rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm w-full bg-white dark:bg-slate-900"
+              loading="lazy"
+            />
+            <img
+              src={GH_CARD('stats')}
+              alt="GitHub stats"
+              class="rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm w-full bg-white dark:bg-slate-900"
+              loading="lazy"
+            />
+            <img
+              src={GH_CARD('most-commit-language', '&exclude=html')}
+              alt="Most used languages by commit"
+              class="rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm w-full bg-white dark:bg-slate-900"
+              loading="lazy"
+            />
+            <img
+              src={GH_CARD('repos-per-language', '&exclude=html')}
+              alt="Repositories per language"
+              class="rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm w-full bg-white dark:bg-slate-900"
+              loading="lazy"
+            />
+            <img
+              src={GH_CARD('productive-time', '&utcOffset=1')}
+              alt="Productive time"
+              class="rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm w-full bg-white dark:bg-slate-900 sm:col-span-2"
+              loading="lazy"
+            />
+          </div>
+
+          <!-- Profile views badge -->
+          <div class="flex justify-center">
+            <img
+              src={`https://komarev.com/ghpvc/?username=${GITHUB_USERNAME}&color=0ea5e9&style=flat-square&label=profile+views`}
+              alt="Profile views"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Side Projects -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold mb-6 flex items-center gap-3">
+          <span class="w-1 h-6 rounded-full bg-gradient-to-b from-sky-500 to-indigo-500"></span>
+          Side Projects
+        </h2>
+        <div class="space-y-4">
+          {sideProjects.map((p) => (
+            <a
+              href={p.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="block rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 shadow-sm hover:shadow-md hover:border-sky-300 dark:hover:border-sky-700 transition-all group"
+            >
+              <div class="flex items-center justify-between gap-3">
+                <h3 class="text-lg font-semibold text-slate-900 dark:text-slate-100 group-hover:text-sky-700 dark:group-hover:text-sky-400 transition-colors">
+                  {p.name}
+                </h3>
+                <span class="text-slate-400 group-hover:text-sky-600 dark:group-hover:text-sky-400 transition-colors">↗</span>
+              </div>
+              <p class="mt-2 text-slate-700 dark:text-slate-300 leading-relaxed text-sm">
+                {p.description}
+              </p>
+              <div class="mt-3 flex flex-wrap gap-2">
+                {p.tags.map((t) => (
+                  <span class="text-xs font-medium px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </a>
           ))}
         </div>
       </section>
