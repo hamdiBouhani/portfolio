@@ -2,20 +2,36 @@
 interface Props {
   href?: string;
   class?: string;
+  /** Set to false if the card shouldn't open in a new tab */
+  external?: boolean;
 }
-const { href, class: className = '' } = Astro.props;
+
+const { href, class: className = '', external = true } = Astro.props;
 
 const base =
-  'rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm';
+  'rounded-xl bg-white dark:bg-slate-900 ' +
+  'border border-slate-200 dark:border-slate-800 ' +
+  'shadow-sm';
 
-const tag = href ? 'a' : 'article';
-const extra = href
-  ? 'block hover:shadow-md hover:border-sky-300 dark:hover:border-sky-700 transition-all group'
-  : 'p-6 hover:shadow-md transition-shadow';
+const isLink = Boolean(href);
+
+const extra = isLink
+  ? 'block p-6 transition-all group ' +
+    'hover:shadow-md hover:border-sky-300 dark:hover:border-sky-700 ' +
+    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-950'
+  : 'p-6 transition-shadow hover:shadow-md';
+
+const linkAttrs = isLink && external
+  ? { target: '_blank', rel: 'noopener noreferrer' }
+  : {};
 ---
-<tag
-  class={`${base} ${extra} ${className}`}
-  {...href ? { href, target: '_blank', rel: 'noopener noreferrer' } : {}}
->
-  <slot />
-</tag>
+
+{isLink ? (
+  <a href={href} class={`${base} ${extra} ${className}`} {...linkAttrs}>
+    <slot />
+  </a>
+) : (
+  <article class={`${base} ${extra} ${className}`}>
+    <slot />
+  </article>
+)}
